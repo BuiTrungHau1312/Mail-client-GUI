@@ -3,11 +3,16 @@ package com.example.demo4;
 import com.example.DTO.Account;
 import com.example.Utils.Client;
 import com.example.Utils.Request;
-import com.google.gson.Gson;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -21,19 +26,42 @@ public class HellorController {
     public HellorController() throws IOException {
     }
 
-    public void Login(ActionEvent actionEvent) {
+    public void Login(ActionEvent actionEvent) throws IOException {
         String username = txtusername.getText();
         String password = txtpassword.getText();
 
-        Account account = new Account(username, password);
-        String s = new Gson().toJson(account);
-        System.out.println(s);
-        instance.sendDataToServer(new Request().setData(account).setType("LOGIN"));
-        String response = instance.receiveData();
-        System.out.println(response);
+        if (!isValid(username, password)) {
+            showAlertWithoutHeaderText("Invalid username and password");
+        } else {
+            instance.sendDataToServer(new JSONObject().put("username", username).put("password", password).put("type", "LOGIN").toString());
+            listenData(actionEvent);
+        }
+    }
 
+    private void listenData(ActionEvent actionEvent) throws IOException {
+        String data = instance.receiveData();
+        JSONObject res = new JSONObject(data);
+        System.out.println(res);
+        switch (res.getString("type")) {
+            case "LOGIN":
+                if (res.getString("status").equalsIgnoreCase("SUCCESS") ) {
+                    Parent loginViewParent = FXMLLoader.load(getClass().getResource("home-view.fxml"));
+                    Scene loginViewScene = new Scene(loginViewParent);
 
-//        showAlertWithoutHeaderText(new Gson().toJson(account));
+                    Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    window.setScene(loginViewScene);
+                    window.show();
+                    break;
+                } else if (res.getString("status").equalsIgnoreCase("ERROR")) {
+                    showAlertWithoutHeaderText("Tai khoan hoac mat khau khong hop le");
+                }
+            default:
+                
+        }
+    }
+
+    private boolean isValid(String username, String password) {
+        return username != null && password != null;
     }
 
     private void showAlertWithoutHeaderText(String data) {
@@ -42,8 +70,17 @@ public class HellorController {
 
         // Header Text: null
         alert.setHeaderText(null);
-        alert.setContentText(data.toString());
+        alert.setContentText(data);
 
         alert.showAndWait();
+    }
+
+    public void Register(ActionEvent actionEvent) throws Exception {
+        Parent loginViewParent = FXMLLoader.load(getClass().getResource("register-view.fxml"));
+        Scene loginViewScene = new Scene(loginViewParent);
+
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(loginViewScene);
+        window.show();
     }
 }

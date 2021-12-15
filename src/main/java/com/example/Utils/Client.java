@@ -1,9 +1,10 @@
 package com.example.Utils;
 
-import com.google.gson.Gson;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class Client {
     private static final String HOST = "localhost";
@@ -18,8 +19,6 @@ public class Client {
         mainSocket = new Socket(HOST,PORT);
         bufferedReader = new BufferedReader(new InputStreamReader(mainSocket.getInputStream()));
         bufferedWriter = new BufferedWriter(new OutputStreamWriter(mainSocket.getOutputStream()));
-
-
     }
 
     public static Client getInstance() throws IOException {
@@ -31,7 +30,6 @@ public class Client {
 
     public void sendDataToServer(Object Data) {
         try {
-            System.out.println(Data.toString());
             bufferedWriter.write(Data.toString());
             bufferedWriter.newLine();
             bufferedWriter.flush();
@@ -52,18 +50,13 @@ public class Client {
     }
 
     public String receiveData() {
-        String data = "{}";
+        String data = "";
         try {
-
             data = bufferedReader.readLine();
-            String gson = new Gson().toJson(data);
-
-            System.out.println(gson);
-            System.out.println("Client receive: "+ data);
+            return new JSONObject(data).toString();
         } catch (IOException e) {
             e.printStackTrace();
-            closeConnection();
         }
-        return new Gson().toJson(data).toString();
+        return null;
     }
 }
