@@ -9,6 +9,7 @@ module com.example.demo4 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.google.gson;
+    requires org.json;
 
     opens com.example.demo4 to javafx.fxml;
     exports com.example.demo4;
