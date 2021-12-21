@@ -42,7 +42,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="30.0" text="asdasdasd" GridPane.columnIndex="1">
+                  <TextField fx:id="txtReceiver" prefHeight="30.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
@@ -69,14 +69,14 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="30.0" GridPane.columnIndex="1">
+                  <TextField fx:id="txtTopic" prefHeight="30.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </TextField>
                </children>
             </GridPane>
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <TextArea fx:id="txtContent" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -84,7 +84,7 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </TextArea>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Gửi" textAlignment="CENTER" GridPane.rowIndex="3">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#SendMail" text="Gửi" textAlignment="CENTER" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -98,7 +98,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" onAction="#BackToHome" mnemonicParsing="false" text="Exit" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#BackToHome" text="Exit" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <padding>
                   <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
                </padding>
