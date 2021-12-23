@@ -37,11 +37,11 @@
                 <GridPane.margin>
                     <Insets left="20.0" />
                 </GridPane.margin></TextField>
-            <Label text="username" GridPane.halignment="CENTER">
+            <Label text="Tài khoản" GridPane.halignment="CENTER">
                 <font>
                     <Font size="16.0" />
                 </font></Label>
-            <Label text="password" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label text="Mật khẩu" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                 <font>
                     <Font size="16.0" />
                 </font></Label>
@@ -56,7 +56,7 @@
         <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button layoutX="224.0" layoutY="17.0" mnemonicParsing="false" onAction="#Login" prefWidth="231.0" text="LOGIN">
+                  <Button layoutX="224.0" layoutY="17.0" mnemonicParsing="false" onAction="#Login" prefWidth="231.0" text="Đăng nhập">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -67,12 +67,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label layoutX="224.0" layoutY="75.0" prefHeight="21.0" prefWidth="168.0" text="I don't have an account.">
+                  <Label layoutX="224.0" layoutY="75.0" prefHeight="21.0" prefWidth="168.0" text="Tôi chưa có tài khoản.">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button accessibleRole="TEXT" alignment="CENTER" contentDisplay="CENTER" layoutX="386.0" layoutY="70.0" mnemonicParsing="false" onAction="#Register" text="Register now." textFill="#2200ff">
+                  <Button accessibleRole="TEXT" alignment="CENTER" contentDisplay="CENTER" layoutX="386.0" layoutY="70.0" mnemonicParsing="false" onAction="#Register" text="Đăng kí ngay." textFill="#2200ff">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -84,7 +84,7 @@
             </AnchorPane>
         </items>
     </SplitPane>
-    <Label text="Login" GridPane.halignment="CENTER">
+    <Label text="Đăng nhập" GridPane.halignment="CENTER">
         <font>
             <Font name="System Bold" size="37.0" />
         </font>

@@ -44,22 +44,22 @@
                             <Insets left="20.0" />
                         </GridPane.margin>
                     </TextField>
-                    <Label text="Username" GridPane.halignment="CENTER">
+                    <Label text="Tài khoản" GridPane.halignment="CENTER">
                         <font>
                             <Font size="16.0" />
                         </font>
                     </Label>
-                    <Label text="Password" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                    <Label text="Mật khẩu" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                         <font>
                             <Font size="16.0" />
                         </font>
                     </Label>
-                    <Label text="Confirm Password" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                    <Label text="Xác nhận mật khẩu" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                         <font>
                             <Font size="16.0" />
                         </font>
                     </Label>
-                    <TextField maxWidth="-Infinity" fx:id="txtPasswordConfirm" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <TextField fx:id="txtPasswordConfirm" maxWidth="-Infinity" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                         <GridPane.margin>
                             <Insets left="20.0" />
                         </GridPane.margin>
@@ -70,7 +70,7 @@
                 <items>
                     <AnchorPane maxHeight="80.0" minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="692.0">
                         <children>
-                              <Button fx:id="btnExit" layoutX="484.0" layoutY="20.0" minWidth="100.0" mnemonicParsing="false" onAction="#BackToLogin" prefHeight="41.0" prefWidth="121.0" text="Exit">
+                              <Button fx:id="btnExit" layoutX="484.0" layoutY="20.0" minWidth="100.0" mnemonicParsing="false" onAction="#BackToLogin" prefHeight="41.0" prefWidth="121.0" text="Trở lại">
                                   <padding>
                                       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                   </padding>
@@ -78,7 +78,7 @@
                                       <Font size="16.0" />
                                   </font>
                               </Button>
-                              <Button fx:id="btnRegister" layoutX="317.0" layoutY="20.0" minWidth="100.0" mnemonicParsing="false" onAction="#Register" prefHeight="41.0" prefWidth="121.0" text="Register">
+                              <Button fx:id="btnRegister" layoutX="317.0" layoutY="20.0" minWidth="100.0" mnemonicParsing="false" onAction="#Register" prefHeight="41.0" prefWidth="121.0" text="Đăng kí ngay">
                                   <padding>
                                       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                   </padding>
@@ -98,6 +98,14 @@
                   <Insets left="72.0" />
                </GridPane.margin>
             </Label>
+            <Button mnemonicParsing="false" onAction="#Close" text="X" textFill="WHITE" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
         </children>
     </GridPane>
 </children>

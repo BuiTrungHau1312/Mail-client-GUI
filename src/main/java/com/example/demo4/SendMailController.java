@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Base64;
 
 public class SendMailController {
     public TextArea txtContent;
@@ -43,7 +44,11 @@ public class SendMailController {
     private void listenData(ActionEvent actionEvent) throws IOException {
         String data = instance.receiveData();
         JSONObject res = new JSONObject(data);
-        System.out.println(res);
+
+        byte[] decodedBytes = Base64.getDecoder().decode(res.getString("encode"));
+        String decodeString = new String(decodedBytes);
+        JSONObject jsonObject = new JSONObject(decodeString);
+        System.out.println(jsonObject);
     }
 
     public void Close(ActionEvent actionEvent) {

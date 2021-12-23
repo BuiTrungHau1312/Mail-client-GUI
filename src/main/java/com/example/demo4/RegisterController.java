@@ -24,14 +24,36 @@ public class RegisterController {
     public RegisterController() throws IOException {
     }
 
+    static boolean isValid(String email) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
+    }
+
+//    static boolean isValidPassword(String password) {
+//        String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{8,}";
+//        return password.matches(regex);
+//    }
+
     public void Register(ActionEvent actionEvent) throws IOException {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
         String confirmPassword = txtPasswordConfirm.getText();
+        String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
 
         System.out.println("uesrname" + username + " password " + password + " confirm " + confirmPassword);
-        if (!password.equals(confirmPassword)) {
-            instance.showAlertWithoutHeaderText("mật khẩu không hợp lệ");
+        if (!isValid(username)) {
+            instance.showAlertWithoutHeaderText("Tài khoản không hợp lệ");
+        } else if (password.matches(regex) == false) {
+            instance.showAlertWithoutHeaderText("Mật khẩu không hợp lệ\n" +
+                    "Mật khẩu phải có:\n\t" +
+                    "+ Mật khẩu và xác nhận phải trùng nhau\n\t" +
+                    "+ Ít nhất 8 kí tự\n\t" +
+                    "+ Chứa 1 số\n\t" +
+                    "+ Chứa chữ in hoa và chữ thường\n\t" +
+                    "+ Chứa kí tự đặc biệt\n\t" +
+                    "+ Không được chứa khoảng trắng");
+        } else if (!password.equals(confirmPassword)) {
+            instance.showAlertWithoutHeaderText("Mật khẩu không khớp");
         } else {
             instance.sendDataToServer(new JSONObject().put("username", username).put("password", password).put("type", "REGISTER").toString());
             listenData(actionEvent);

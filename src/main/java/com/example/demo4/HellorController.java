@@ -40,19 +40,17 @@ public class HellorController {
             instance.sendDataToServer(new JSONObject().put("username", username).put("password", password).put("type", "LOGIN").toString());
             listenData(actionEvent);
         }
-        String originalInput = "123";
-        String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
-        System.out.println(encodedString);
-
-        byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
-        String decodedString = new String(decodedBytes);
-        System.out.println("giải mã" + decodedString);
+//        String originalInput = "123";
+//        String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
+//
+//        byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+//        String decodedString = new String(decodedBytes);
     }
 
     private void listenData(ActionEvent actionEvent) throws IOException {
         String data = instance.receiveData();
         JSONObject res = new JSONObject(data);
-        System.out.println(res);
+//        System.out.println(res);
         switch (res.getString("type")) {
             case "LOGIN":
                 if (res.getString("status").equalsIgnoreCase("SUCCESS")) {
@@ -66,14 +64,6 @@ public class HellorController {
                 } else if (res.getString("status").equalsIgnoreCase("ERROR")) {
                     instance.showAlertWithoutHeaderText("Tài khoản hoặc mật khẩu không hợp lệ");
                 }
-//            case "REGISTER":
-//                if (res.getString("status").equalsIgnoreCase("SUCCESS")) {
-//                    instance.showAlertWithoutHeaderText("Đăng kí tài khoản thành công");
-//                } else {
-//                    instance.showAlertWithoutHeaderText("đăng kí thất bại");
-//                }
-            case "SENDMAIL":
-                System.out.println(res);
             default:
                 
         }
