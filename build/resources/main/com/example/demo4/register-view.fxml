@@ -34,12 +34,12 @@
                     <RowConstraints maxHeight="218.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <TextField fx:id="txtusername" maxWidth="-Infinity" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <TextField fx:id="txtPassword" maxWidth="-Infinity" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <GridPane.margin>
                             <Insets left="20.0" />
                         </GridPane.margin>
                     </TextField>
-                    <TextField fx:id="txtpassword" maxWidth="-Infinity" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1">
+                    <TextField fx:id="txtUsername" maxWidth="-Infinity" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1">
                         <GridPane.margin>
                             <Insets left="20.0" />
                         </GridPane.margin>
@@ -59,7 +59,7 @@
                             <Font size="16.0" />
                         </font>
                     </Label>
-                    <TextField maxWidth="-Infinity" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <TextField maxWidth="-Infinity" fx:id="txtPasswordConfirm" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                         <GridPane.margin>
                             <Insets left="20.0" />
                         </GridPane.margin>

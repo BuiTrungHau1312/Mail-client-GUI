@@ -1,5 +1,6 @@
 package com.example.Utils;
 
+import javafx.scene.control.Alert;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -39,7 +40,7 @@ public class Client {
         }
     }
 
-    private void closeConnection() {
+    public void closeConnection() {
         try {
             bufferedWriter.close();
             bufferedReader.close();
@@ -58,5 +59,16 @@ public class Client {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void showAlertWithoutHeaderText(String data) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Test Connection");
+
+        // Header Text: null
+        alert.setHeaderText(null);
+        alert.setContentText(data);
+
+        alert.showAndWait();
     }
 }

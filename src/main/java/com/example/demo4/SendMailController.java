@@ -37,4 +37,8 @@ public class SendMailController {
         instance.sendDataToServer(new JSONObject().put("receiver", receiver).put("topic", topic)
                 .put("message", content).put("status", "SUCCESS").put("type", "SENDMAIL").toString());
     }
+
+    public void Close(ActionEvent actionEvent) {
+        instance.closeConnection();
+    }
 }

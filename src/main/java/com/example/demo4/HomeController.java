@@ -40,17 +40,9 @@ public class HomeController {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(loginViewScene);
         window.show();
+    }
 
-
-//        Stage popupwindow=new Stage();
-//
-//        popupwindow.initModality(Modality.APPLICATION_MODAL);
-////        VBox layout= new VBox(10);
-////        Scene scene1= new Scene(layout, 300, 250);
-//        Parent loginViewParent = FXMLLoader.load(getClass().getResource("send-mail-view.fxml"));
-//        Scene loginViewScene = new Scene(loginViewParent);
-//        popupwindow.setScene(loginViewScene);
-//
-//        popupwindow.showAndWait();
+    public void Close(ActionEvent actionEvent) {
+        instance.closeConnection();
     }
 }

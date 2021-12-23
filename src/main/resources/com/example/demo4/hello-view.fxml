@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -32,11 +33,7 @@
             <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <TextField fx:id="txtpassword" maxWidth="-Infinity" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                <GridPane.margin>
-                    <Insets left="20.0" />
-                </GridPane.margin></TextField>
-            <TextField fx:id="txtusername" maxWidth="-Infinity" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1">
+            <TextField fx:id="txtUsername" maxWidth="-Infinity" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1">
                 <GridPane.margin>
                     <Insets left="20.0" />
                 </GridPane.margin></TextField>
@@ -48,13 +45,18 @@
                 <font>
                     <Font size="16.0" />
                 </font></Label>
+            <PasswordField fx:id="txtPassword" maxWidth="90.0" minWidth="290.0" prefHeight="40.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </PasswordField>
         </children>
     </GridPane>
     <SplitPane prefHeight="160.0" prefWidth="200.0" GridPane.rowIndex="2">
         <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button layoutX="224.0" layoutY="17.0" onAction="#Login" mnemonicParsing="false" prefWidth="231.0" text="LOGIN">
+                  <Button layoutX="224.0" layoutY="17.0" mnemonicParsing="false" onAction="#Login" prefWidth="231.0" text="LOGIN">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -70,7 +72,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button accessibleRole="TEXT" alignment="CENTER" contentDisplay="CENTER" onAction="#Register" layoutX="386.0" layoutY="70.0" mnemonicParsing="false" text="Register now." textFill="#2200ff">
+                  <Button accessibleRole="TEXT" alignment="CENTER" contentDisplay="CENTER" layoutX="386.0" layoutY="70.0" mnemonicParsing="false" onAction="#Register" text="Register now." textFill="#2200ff">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -87,5 +89,16 @@
             <Font name="System Bold" size="37.0" />
         </font>
     </Label>
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#Close" text="X" textFill="WHITE" GridPane.halignment="RIGHT">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Button>
 </children>
 </GridPane>

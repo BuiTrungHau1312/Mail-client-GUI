@@ -17,8 +17,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class HellorController {
-    public TextField txtusername;
-    public TextField txtpassword;
+    public TextField txtUsername;
+    public TextField txtPassword;
     public Button btnLogin;
     public Button btnRegister;
     private Client instance = Client.getInstance();
@@ -27,15 +27,16 @@ public class HellorController {
     }
 
     public void Login(ActionEvent actionEvent) throws IOException {
-        String username = txtusername.getText();
-        String password = txtpassword.getText();
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
 
         if (!isValid(username, password)) {
-            showAlertWithoutHeaderText("Invalid username and password");
+            instance.showAlertWithoutHeaderText("Invalid username and password");
         } else {
             instance.sendDataToServer(new JSONObject().put("username", username).put("password", password).put("type", "LOGIN").toString());
             listenData(actionEvent);
         }
+//        instance.closeConnection();
     }
 
     private void listenData(ActionEvent actionEvent) throws IOException {
@@ -44,7 +45,7 @@ public class HellorController {
         System.out.println(res);
         switch (res.getString("type")) {
             case "LOGIN":
-                if (res.getString("status").equalsIgnoreCase("SUCCESS") ) {
+                if (res.getString("status").equalsIgnoreCase("SUCCESS")) {
                     Parent loginViewParent = FXMLLoader.load(getClass().getResource("home-view.fxml"));
                     Scene loginViewScene = new Scene(loginViewParent);
 
@@ -53,7 +54,13 @@ public class HellorController {
                     window.show();
                     break;
                 } else if (res.getString("status").equalsIgnoreCase("ERROR")) {
-                    showAlertWithoutHeaderText("Tai khoan hoac mat khau khong hop le");
+                    instance.showAlertWithoutHeaderText("Tài khoản hoặc mật khẩu không hợp lệ");
+                }
+            case "REGISTER":
+                if (res.getString("status").equalsIgnoreCase("SUCCESS")) {
+                    instance.showAlertWithoutHeaderText("Đăng kí tài khoản thành công");
+                } else {
+                    instance.showAlertWithoutHeaderText("đăng kí thất bại");
                 }
             default:
                 
@@ -64,17 +71,6 @@ public class HellorController {
         return username != null && password != null;
     }
 
-    private void showAlertWithoutHeaderText(String data) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Test Connection");
-
-        // Header Text: null
-        alert.setHeaderText(null);
-        alert.setContentText(data);
-
-        alert.showAndWait();
-    }
-
     public void Register(ActionEvent actionEvent) throws Exception {
         Parent loginViewParent = FXMLLoader.load(getClass().getResource("register-view.fxml"));
         Scene loginViewScene = new Scene(loginViewParent);
@@ -82,5 +78,9 @@ public class HellorController {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(loginViewScene);
         window.show();
+    }
+
+    public void Close(ActionEvent actionEvent) {
+        instance.closeConnection();
     }
 }
