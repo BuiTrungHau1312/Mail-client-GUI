@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 public class HellorController {
     public TextField txtUsername;
@@ -26,7 +30,7 @@ public class HellorController {
     public HellorController() throws IOException {
     }
 
-    public void Login(ActionEvent actionEvent) throws IOException {
+    public void Login(ActionEvent actionEvent) throws IOException, NoSuchAlgorithmException {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
 
@@ -36,7 +40,13 @@ public class HellorController {
             instance.sendDataToServer(new JSONObject().put("username", username).put("password", password).put("type", "LOGIN").toString());
             listenData(actionEvent);
         }
-//        instance.closeConnection();
+        String originalInput = "123";
+        String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
+        System.out.println(encodedString);
+
+        byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+        String decodedString = new String(decodedBytes);
+        System.out.println("giải mã" + decodedString);
     }
 
     private void listenData(ActionEvent actionEvent) throws IOException {
@@ -56,12 +66,14 @@ public class HellorController {
                 } else if (res.getString("status").equalsIgnoreCase("ERROR")) {
                     instance.showAlertWithoutHeaderText("Tài khoản hoặc mật khẩu không hợp lệ");
                 }
-            case "REGISTER":
-                if (res.getString("status").equalsIgnoreCase("SUCCESS")) {
-                    instance.showAlertWithoutHeaderText("Đăng kí tài khoản thành công");
-                } else {
-                    instance.showAlertWithoutHeaderText("đăng kí thất bại");
-                }
+//            case "REGISTER":
+//                if (res.getString("status").equalsIgnoreCase("SUCCESS")) {
+//                    instance.showAlertWithoutHeaderText("Đăng kí tài khoản thành công");
+//                } else {
+//                    instance.showAlertWithoutHeaderText("đăng kí thất bại");
+//                }
+            case "SENDMAIL":
+                System.out.println(res);
             default:
                 
         }

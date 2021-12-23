@@ -30,12 +30,20 @@ public class SendMailController {
         window.setScene(loginViewScene);
         window.show();
     }
-    public void SendMail(ActionEvent actionEvent) {
+
+    public void SendMail(ActionEvent actionEvent) throws IOException {
         String receiver = txtReceiver.getText();
         String topic = txtTopic.getText();
         String content = txtContent.getText();
         instance.sendDataToServer(new JSONObject().put("receiver", receiver).put("topic", topic)
                 .put("message", content).put("status", "SUCCESS").put("type", "SENDMAIL").toString());
+        listenData(actionEvent);
+    }
+
+    private void listenData(ActionEvent actionEvent) throws IOException {
+        String data = instance.receiveData();
+        JSONObject res = new JSONObject(data);
+        System.out.println(res);
     }
 
     public void Close(ActionEvent actionEvent) {

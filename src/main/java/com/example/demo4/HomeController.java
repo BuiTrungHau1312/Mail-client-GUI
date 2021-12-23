@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-public class HomeController {
+public class HomeController implements Runnable {
     private Client instance = Client.getInstance();
 
     public HomeController() throws IOException {
@@ -44,5 +44,24 @@ public class HomeController {
 
     public void Close(ActionEvent actionEvent) {
         instance.closeConnection();
+    }
+
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("hello");
+        instance.receiveData();
+    }
+
+
+
+    public static void main(String[] args) throws IOException {
+        HomeController homeController = new HomeController();
+        Thread thread = new Thread(homeController);
+        thread.start();
     }
 }
