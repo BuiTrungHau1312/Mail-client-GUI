@@ -47,6 +47,7 @@ public class SendMailController {
 
         byte[] decodedBytes = Base64.getDecoder().decode(res.getString("encode"));
         String decodeString = new String(decodedBytes);
+        System.out.println(decodeString);
         JSONObject jsonObject = new JSONObject(decodeString);
         System.out.println(jsonObject);
     }

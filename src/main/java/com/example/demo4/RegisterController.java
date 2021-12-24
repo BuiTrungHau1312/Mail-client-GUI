@@ -75,7 +75,7 @@ public class RegisterController {
                     window.setScene(loginViewScene);
                     window.show();
                 } else {
-                    instance.showAlertWithoutHeaderText("đăng kí thất bại");
+                    instance.showAlertWithoutHeaderText("Tài khoản đã tồn tại");
                 }
             default:
 
